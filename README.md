@@ -1,0 +1,1 @@
+# szkolenie_R_podstawowe
