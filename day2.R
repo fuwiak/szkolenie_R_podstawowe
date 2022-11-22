@@ -689,29 +689,29 @@ ggplot(titanic, aes(x = Age)) + geom_histogram()
 
 #plot histogram with bins
 
-ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 2)
+ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 60)
 
 #plot histogram with bins and fill
 
-ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 2, fill = "red")
+ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 60, fill = "blue")
 
 #plot histogram with bins and fill and color
 
-ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 2, fill = "red", color = "blue")
+ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 60, fill = "#00ffff", color = "blue",show.legend=TRUE)
 
 #scatter plot
 
 ggplot(titanic, aes(x = Age, y = Fare)) + geom_point()
 
 #scatter plot with color
-ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red")
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "#00ffff")
 
 #scatter plot with color and shape
-ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2)
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 4)
 
 #scatter plot with linear regression
 
-ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm")
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 4) + geom_smooth(method = "lm")
 
 #scatter plot with linear regression and legend
 
@@ -720,11 +720,11 @@ ggplot(titanic, aes(x = Age, y = Fare))
 
 #scatter plot with linear regression and legend and title
 
-ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare")
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue")+ theme(legend.position = "bottom") + ggtitle("Age vs Fare")
 
 #facet plot
 
-ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare") + facet_wrap(~Sex)
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare") + facet_wrap(~TicketType)
 
 #facet plot with legend
 
@@ -747,3 +747,28 @@ ggplot(titanic, aes(x = Fare)) + geom_boxplot()
 ggplot(titanic, aes(y = Fare)) + geom_boxplot() + facet_wrap(~Sex)
 
 
+
+
+#pokaz wykres rozrzutu dla wieku(geom_point) i ceny biletu z podzialem na plec i klasa
+# + facet_wrap(~AgeGroup)
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare") + facet_wrap(~Sex+~Pclass) + theme(legend.position = "bottom")
+
+
+#boxplot z podzialem(facet) na klase Premium i STANDARD, dodajcie tytul i legende
+
+ggplot(titanic, aes(y = Fare)) + geom_boxplot()+facet_wrap(~TicketType)+theme(legend.position = "bottom") + ggtitle("Age vs Fare boxpplot") + theme(legend.position = "bottom")
+
+
+
+titanic %>%filter(Sex=="female")%>%
+  ggplot(aes(y = Fare)) + geom_boxplot()+facet_wrap(~TicketType)+theme(legend.position = "bottom") + ggtitle("Age vs Fare boxpplot female") + theme(legend.position = "bottom")
+
+
+  
+
+
+
+
+
+
+                                                                                       
