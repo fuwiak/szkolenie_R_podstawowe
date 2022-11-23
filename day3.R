@@ -2,11 +2,12 @@ library(tidyverse)
 library(ggplot2)
 library(haven)
 library(nortest)
-# library(rstatix)
-library(corrplot)
+library(rstatix)
+# library(corrplot)
 
+install.packages('nortest')
 
-# library("ggpubr")
+library("ggpubr")
 
 install.packages('rstatix')
 
@@ -19,9 +20,12 @@ url<-"https://github.com/fuwiak/szkolenie_R_podstawowe/blob/main/PL.sav?raw=true
 
 PL<-read_sav(url)
 
+class(PL)
+
 # wyświetlenie danych
 
 PL %>% glimpse()
+PL %>% head()
 
 # wyświetlenie pierwszych 6 wierszy
 
@@ -29,12 +33,14 @@ PL %>% head()
 
 # wyświetlenie ostatnich 6 wierszy
 
-PL %>% tail()
+PL %>% tail(10)
 
 # wyświetlenie statystyk
 
 PL %>% summary()
 # wyświetlenie statystyk dla kolumny
+
+
 
 #rds - plik zapisany w formacie RDS
 
@@ -57,6 +63,7 @@ suicides %>% head()
 
 titanic <- read.csv("https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv")
 
+titanic %>% glimpse()
 
 
 # tabele kontyngencji - test chi-kwadrat
@@ -67,23 +74,25 @@ tab <- table(titanic$Survived, titanic$Sex)
 tab
 
 # test chi-kwadrat
-# H0: nie ma zależności między zmiennymi Survived
-# H1: istnieje zależność między zmiennymi Sex
+# H0: nie ma zależności między zmiennymi Survived a Sex
+# H1: istnieje zależność między zmiennymi Survived a Sex
 chisq.test(tab)
 
+
+chisq.test(tab)
 
 p<-chisq.test(tab)$p.value
 
 if(p<0.05){
-  print("Odrzucamy hipotezę zerową")
-}
-else{
+  print("Odrzucamy hipotezę zerową, H1")
+}else{
   print("Nie odrzucamy hipotezy zerowej")
 }
 
 # Współczynnik V Craméra
 
 V<- sqrt(chisq.test(tab)$statistic/(sum(tab)*(min(dim(tab))-1)))
+V
 
 # Współczynnik V Craméra daje w wyniku wartości pomiędzy 0 a +1 (włącznie), przy czym im wynik jest bliżej 0,
 # tym słabszy jest związek między badanymi cechami, a im bliżej jest 1, tym silniejszy jest związek między badanymi cechami
@@ -95,6 +104,29 @@ V<- sqrt(chisq.test(tab)$statistic/(sum(tab)*(min(dim(tab))-1)))
 # a) przygotować tabele kontyngencji
 # b) przeprowadzić test chi-kwadrat
 # c) obliczyć współczynnik V Craméra
+
+
+
+# a) przygotować tabele kontyngencji
+tab2 <- table(titanic$Survived, titanic$Pclass)
+tab2
+# b) przeprowadzić test chi-kwadrat
+# test chi-kwadrat
+# H0: nie ma zależności między zmiennymi Survived i Pclass
+# H1: istnieje zależność między zmiennymi Survived i Pclass
+chisq.test(tab2)
+p2<-chisq.test(tab2)$p.value
+p2
+if(p2<0.05){
+  print("Odrzucamy hipotezę zerową")
+}else{
+  print("Nie odrzucamy hipotezy zerowej")
+}
+# c) obliczyć współczynnik V Craméra
+V<- sqrt(chisq.test(tab2)$statistic/(sum(tab2)*(min(dim(tab2))-1)))
+V
+
+
 
 #test anova
 # Jednoczynnikowa analiza wariancji
@@ -111,6 +143,9 @@ anova<-aov(suicides_no~sex, data=suicides)
 
 summary(anova)
 
+# suicides%>% select(suicides_no, sex) %>% aov(suicides_no~sex)
+
+
 p<-anova$`Pr(>F)`[1]
 p # wartosc p
 
@@ -121,6 +156,7 @@ p # wartosc p
 # Współczynnik V Craméra
 
 V<- sqrt(anova$`F value`[1]/(anova$`F value`[1]+anova$`Num DF`[1]))
+V
 
 # Współczynnik V Craméra daje w wyniku wartości pomiędzy 0 a +1 (włącznie), przy czym im wynik jest bliżej 0,
 # tym słabszy jest związek między badanymi cechami, a im bliżej jest 1, tym silniejszy jest związek między badanymi cechami
@@ -134,6 +170,27 @@ V<- sqrt(anova$`F value`[1]/(anova$`F value`[1]+anova$`Num DF`[1]))
 # H0: brak wplywu zmiennej age na zmienna suicides_no
 # H1: wplyw zmiennej age na zmienna suicides_no
 
+anova2<-aov(suicides_no~age, data=suicides)
+
+summary(anova2)
+
+p<-anova2$`Pr(>F)`[1]
+p
+
+alfa = 0.05
+
+if(p2<0.05){
+  print("Odrzucamy hipotezę zerową")
+}else{
+  print("Nie odrzucamy hipotezy zerowej")
+
+# Współczynnik V Craméra
+
+V<- sqrt(anova2$`F value`[1]/(anova2$`F value`[1]+anova2$`Num DF`[1]))
+V
+
+
+
 
 # Test t dla grup niezaleznych
 
@@ -143,7 +200,7 @@ V<- sqrt(anova$`F value`[1]/(anova$`F value`[1]+anova$`Num DF`[1]))
 # - dane maja byc rownorodne
 # - wariancja w grupach jest rowna
 
-suicides %>% ggplot(aes(y = suicides_no)) + geom_boxplot() + facet_wrap(~sex)+ggtitle("samobostwa w zależności od płci")
+suicides %>% ggplot(aes(x = suicides_no)) + geom_boxplot() + facet_wrap(~sex)+ggtitle("samobostwa w zależności od płci")
 
 # Sprawdzenie zalozen testu t-studenta
 
@@ -155,17 +212,32 @@ suicides %>% ggplot(aes(y = suicides_no)) + geom_boxplot() + facet_wrap(~sex)+gg
 
 suicides %>% group_by(sex) %>% summarise(shapiro.test(suicides_no)$p.value)
 
+
+suicides %>% dim()
+
+
 dim(suicides)
 
 
 library(nortest)
+library(stats)
 suicides %>% group_by(sex) %>% summarise(ad.test(suicides_no)$p.value)
 
 # Wyniki testu AD pokazują, że dane nie są rozkładane normalnie.
 
 #sprawdzy czy chociaz wariancja jest rowna
 
-suicides %>% var_test(suicides_no~sex)
+alfa<-0.05
+
+# H0: wariancje w dwoch grupach sa sobie rowne
+# H1: wariancje w grupach sa rozne
+
+
+stats::var.test(suicides_no~sex, data=suicides)
+
+
+
+# suicides %>% var_test(suicides_no~sex)
 
 
 # Wnioski
@@ -173,11 +245,55 @@ suicides %>% var_test(suicides_no~sex)
 
 # W tym wypadku skorzystamy z testu nieparametrycznego Mann-Whitney-Wilcoxona.
 # Ustalmy na wstepie ze poziom istotnosci alfa wynosi=0.05.
-# Jezeli p-value z testu bedzie wyzsze niz 0.05, nie mamy podstaw,
+# Jezeli p-value z testu bedzie wyzsze niz 0.01, nie mamy podstaw,
 # aby odrzucic hipoteze ze grupy Male i Female dla zmiennej suicides_no pochodza z tej samej populacji.
 
+alfa<-0.01
 
-# suicides %>% drop_na() %>%
+# H0: grupy pochodza z tego samego rozkladu
+# H1: grupy nie pochodza z tego samego rozkladu
+
+
+
+wilcox.test(suicides_no ~ sex, data = suicides)
+
+
+temp<-suicides %>% mutate(sex_binary=ifelse(sex=="male", 1, 0)) 
+
+
+suicides %>% select(sex) %>% unique()
+
+# suicides %>% drop_na() %>% wilcox.test(suicides_no ~ sex_binary)
+
+
+#spawdzmy czy cena biletu zalezy plci - titanic
+#uzyjmy testu t - studenta, sprawdzwmy zalozenia:
+# 1) czy rozklad jest normalny(shapiro.test)
+# 2) rownonsc wariancji
+# 3)jesli beda nie spelnione, uzyj testu wilcoxoan
+
+# 4) sprawdzy t studenta(mimo wsyzstko), zeby sprawdzic, czy wynikii testu z punktu 3 beda sie 
+# roznic z punktem 4 t.test(x, ...)
+
+
+
+titanic %>% ggplot(aes(x = Fare)) + geom_boxplot() + facet_wrap(~Sex)+ggtitle("cena biletu w zależności od płci")
+
+
+titanic %>% group_by(Sex) %>% summarise(shapiro.test(Fare)$p.value) #1
+
+stats::var.test(Fare~Fare, data=titanic) #2
+
+
+wilcox.test(Fare ~ Sex, data = titanic) #3
+
+
+t.test(Fare ~ Sex, data = titanic) #4
+
+
+
+
+
 
 
 # analiza korelacji
@@ -206,17 +322,32 @@ suicides %>% var_test(suicides_no~sex)
 ad.test(suicides$suicides_no)
 ad.test(suicides$gdp_per_capita)
 
+suicides %>% ggplot(aes(x = suicides_no)) + ggplot(aes(x = gdp_per_capita)) +geom_histogram()
+
+
+
+ggplot() + geom_histogram(data = suicides, aes(x = suicides_no), alpha = 0.3) +geom_histogram(data = suicides, aes(x = gdp_per_capita), alpha = 0.7)+geom_point()+ theme(legend.position = "bottom")
+
+
+
+
+
+stats::var.test(suicides$gdp_per_capita, suicides$suicides_no)
+
+
 # Wyniki testu AD pokazują, że dane nie są rozkładane normalnie.
 
 # Korelacja Spearmana to analiza pozwalająca korelować ze sobą zmienne na skali porządkowej oraz ilościowym nieposiadające rozkładu normalnego
 cor.test(suicides$suicides_no, suicides$gdp_per_capita, method = "spearman")
+
+cor.test(suicides$suicides_no, suicides$gdp_per_capita, method = "pearson")
 
 cor.test(suicides$suicides_no, suicides$gdp_per_capita, method = "spearman")$p.value
 
 # Wnioski
 
 # p<0.05, więc zmienna gdp_per_capita ma wpływ na zmienną suicides_n, ale
-# korelacja jest słaba i nie jest istotna statystycznie.
+# korelacja jest słaba i nie jest mocno istotna statystycznie.
 
 
 #select only numeric variables for correlation and plot heatmap
@@ -229,12 +360,11 @@ suicides_num %>% select(suicides_no, gdp_per_capita) %>% ggplot(aes(x = suicides
 
 #plot heatmap annotating with correlation values
 
-suicides_num %>% cor() %>% round(2) %>% corrplot::corrplot(method = "number")
+suicides_num %>% cor(method='spearman') %>% round(2) %>% corrplot::corrplot(method = "number")
 
 #tau kendall correlation
 
-suicides_num %>% cor(method = "kendall") %>% round(2) %>% corrplot::corrplot(method = "number")
-
+suicides_num %>% cor(method = "kendall") %>% round(2) %>% corrplot::corrplot(method = "number") 
 # Zadanie 4
 
 # Zbadac zależność między zmiennymi population i gdp_per_capita, do tego celu uzyjemy testu korelacji tau-b
@@ -261,6 +391,25 @@ lm(Fare ~ Age, data = titanic) %>% summary()
 
 ggplot(titanic, aes(x = Age, y = Fare)) + geom_point() + ggtitle("Zależność między zmiennymi age i fare") + geom_smooth(method = "lm")
 
+
+lm(Fare ~ Age, data = titanic) %>% summary()
+
+#show model coefficients
+lm(Fare ~ Age, data = titanic) %>% summary() %>% .$coefficients %>% as.data.frame() %>% select(1)
+
+#show model coefficients on plot
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point() + ggtitle("Zależność między zmiennymi age i fare") + geom_smooth(method = "lm", se = FALSE) + geom_text(aes(label = round(lm(Fare ~ Age, data = titanic) %>% summary() %>% .$coefficients %>% as.data.frame() %>% select(1), 2)), x = 20, y = 200, size = 5)
+
+#show r2
+lm(Fare ~ Age, data = titanic) %>% summary() %>% .$r.squared
+
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point() + ggtitle("Zależność między zmiennymi age i fare") + geom_smooth(method = "lm", se = FALSE) + geom_text(aes(label = round(lm(Fare ~ Age, data = titanic) %>% summary() %>% .$r.squared, 2)), x = 20, y = 200, size = 5)
+
+#show r2 and model coefficients on plot
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point() + ggtitle("Zależność między zmiennymi age i fare") + geom_smooth(method = "lm", se = FALSE) + geom_text(aes(label = round(lm(Fare ~ Age, data = titanic) %>% summary() %>% .$r.squared, 2)), x = 20, y = 200, size = 5) + geom_text(aes(label = round(lm(Fare ~ Age, data = titanic) %>% summary() %>% .$coefficients %>% as.data.frame() %>% select(1), 2)), x = 20, y = 150, size = 5)
 #sciagawka
 
 # Jak dowiedzieć się, czy model jest najlepiej dopasowany do twoich danych?
