@@ -369,14 +369,26 @@ suicides_num %>% cor(method = "kendall") %>% round(2) %>% corrplot::corrplot(met
 
 # Zbadac zależność między zmiennymi population i gdp_per_capita, do tego celu uzyjemy testu korelacji tau-b
 #stworzyc wykres rozrzutu
-#stworzyc wykres heatmapy
+#stworzyc  heatmapy
 #pokaż wyniki testu korelacji tau-b
 #ustalic czy zależność jest istotna statystycznie
 
 
+# ggplot(suicides, aes(x = population, y = gdp_per_capita)) + geom_point() + ggtitle("Zależność między zmiennymi population i gdp_per_capita")
+
+
+suicides %>% slice_sample(n=100)  %>% ggplot(aes(x = population, y = gdp_per_capita)) + geom_point() + ggtitle("Zależność między zmiennymi population i gdp_per_capita")
+
+
+suicides  %>% select(population,gdp_per_capita ) %>% cor(method = "kendall") 
+
+# suicides  %>% select(population,gdp_per_capita ) %>% cor(method = "kendall")   %>% summary()
+
+cor.test(suicides$population, suicides$gdp_per_capita, method = "spearman")$p.value
+
 # modele liniowe
 
-titanic %>% select_if(is.numeric) %>% cor() %>% round(2) %>% corrplot::corrplot(method = "number")
+suicides %>% slice_sample(n=100)  %>%  select_if(is.numeric) %>% cor(method = "kendall") %>% round(3) %>% corrplot::corrplot(method = "number")
 
 
 ggplot(titanic, aes(x = Age, y = Fare)) + geom_point() + ggtitle("Zależność między zmiennymi age i fare")
@@ -420,4 +432,35 @@ ggplot(titanic, aes(x = Age, y = Fare)) + geom_point() + ggtitle("Zależność m
 # 4. P-value of the F-statistic powinno być mniejsze niż 0,05.
 # 5. Wartości AIC i BIC powinny być niskie.
 # 6. Wartości MAE, MSE, RMSE powinny być niskie.
+
+PL %>% head()
+
+
+# PL, cases,deaths
+
+#wykres punktowy, dopasowac do niego funckje liniowa, pokaz pametry a i b (y=a*x+b)
+# gdzie a = slope, b = intercept
+# podac wartosc R, R2 tego dopasowania
+
+
+ggplot(PL, aes(x = cases, y = deaths)) + geom_point() + ggtitle("Zależność między zmiennymi cases i deaths")+ geom_smooth(method = "lm", se = FALSE)
+
+cor.test(PL$cases, PL$deaths, method = "pearson")
+# cor.test(PL$cases, PL$deaths, method = "spearman")
+# cor.test(PL$cases, PL$deaths, method = "kendall")
+
+lm(cases ~ deaths, data = PL) 
+
+lm(cases ~ deaths, data = PL) %>% summary() %>% .$r.squared
+
+lm(cases ~ deaths, data = PL) %>% summary() %>% .$coefficients %>% as.data.frame() %>% select(1)
+
+
+
+
+R2<-lm(cases ~ deaths, data = PL) %>% summary() %>% .$r.squared
+
+paste("R2=", R2)
+paste("R=", sqrt(R2))
+
 
