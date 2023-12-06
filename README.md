@@ -19,3 +19,7 @@ https://www.kaggle.com/code/vikashchand28/all-model-for-50-new-with-10-bagging-d
 # dane gov 
 
 https://dane.gov.pl/pl/dataset?categories%5Bid%5D%5Bterms%5D=142
+
+https://widok.gov.pl/services/
+
+https://stat.gov.pl/banki-i-bazy-danych/
