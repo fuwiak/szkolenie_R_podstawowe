@@ -14,3 +14,8 @@ https://codeshare.io/PdvpVY
 
 
 https://www.kaggle.com/code/vikashchand28/all-model-for-50-new-with-10-bagging-decision
+
+
+# dane gov 
+
+https://dane.gov.pl/pl/dataset?categories%5Bid%5D%5Bterms%5D=142
