@@ -1,508 +1,46 @@
 
-a<-21
-b<-23
 
-# dodawanie
-print(a+b)
+#macierze
 
-# odejmowanie
-print(a-b)
-
-# mnożenie
-print(a*b)
-
-# dzielenie
-print(a/b)
-
-# potęgowanie
-print(2^3)
-
-print(2**3)
-
-
-print(7/3)
-
-
-print(a!=b)
-
-print(abs(-3))
-
-# abs<-3
-# 
-# abs(-3)
-
-
-# pierwiastek kwadratowy
-print(sqrt(a))
-
-# logarytm naturalny
-print(log(a))
-
-# logarytm o podstawie 10
-print(log10(a))
-
-# logarytm o podstawie 2
-print(log2(a))
-
-# funkcja sinus
-print(sin(a))
-
-
-
-
-
-a<-12.5678
-
-# zaokrąglenie do najbliższej liczby całkowitej
-print(round(a))
-
-# zaokrąglenie do najbliższej liczby całkowitej w dół
-print(floor(a))
-
-# zaokrąglenie do najbliższej liczby całkowitej w górę
-
-print(ceiling(a))
-
-#zaokrąglanie do n miejsc po przecinku
-
-# zaokrąglenie do 3 miejsc po przecinku
-print(round(a,3 ))
-
-# zaokrąglenie do 2 miejsc po przecinku w dół
-print(floor(a*100)/100)
-
-# zaokrąglenie do 2 miejsc po przecinku w górę
-
-print(ceiling(a*100)/100)
-
-
-# wartość maksymalna
-print(max(a,b))
-
-# wartość minimalna
-print(min(a,b))
-
-# wartość średnia
-print(mean(c(a,b)))
-
-# wartość mediany
-print(median(c(a,b)))
-
-# wartość odchylenia standardowego
-print(sd(c(a,b)))
-
-# wartość wariancji
-print(var(c(a,b)))
-
-# wartość sumy
-print(sum(c(a,b)))
-
-
-# wartość iloczynu
-print(prod(c(a,b)))
-
-
-data<- c(1,2,3,3,4,4,5)
-
-silnia<-c(1,2,3,4)
-cumsum(silnia)
-
-
-
-
-
-
-print(is.character('1'))
-
-# 1 jest rozne od '1'
-
-
-
-
-is.double(2)
-
-
-zmienna<-readline("Wprowadz dowolna wartosc ")
-
-as.numeric(zmienna)*2
-
-
-#zadanie bojowe
-#stworz zmiennie x,y,z typu double
-#wprowadz do nich wartosci z klawiatury
-#oblicz pole trojkata o podstawie x i wysokosci y
-#oblicz pole kola o promieniu z, uzyj zmiennej pi
-pi<-3.14
-
-x<-readline("podaj x ")
-x <-as.numeric(x)
-
-
-a<-21.370000
-
-
-# formatowanie liczb
-print(format(a,scientific=TRUE)) # format naukowy
-print(format(a,scientific=FALSE)) # format normalny
-print(format(a,scientific=FALSE,trim=TRUE)) # format normalny bez zer na końcu
-print(format(a,scientific=FALSE,trim=TRUE,width=10)) # format normalny bez zer na końcu i szerokość 10 znaków
-print(format(a,scientific=FALSE,trim=TRUE,width=5,decimal.mark=",")) # format normalny bez zer na końcu i szerokość 10 znaków i  przecinek zamiast kropki
-
-
-
-
-a<-21.370000
-#sprintf - styl jezyka C
-print(sprintf("%f",a)) # formatowanie liczb zmiennoprzecinkowych
-print(sprintf("%e",a)) # formatowanie liczb zmiennoprzecinkowych w notacji naukowej
-print(sprintf("%g",a)) # formatowanie liczb zmiennoprzecinkowych w notacji naukowej lub normalnej
-
-
-
-
-napis1<-"Hello"
-napis2<-"World"
-
-#dlugosc napisu, nie uzywaj funkcji length!!
-print(nchar(napis1))
-print(length(napis1))
-
-print(napis1[5:1])
-
-
-string_split <- strsplit(napis1, NULL)[[1]]
-
-string_split[5:1]
-paste(string_split[5:1], collapse = "") # odwrócenie napisu
-
-library(stringi)
-stri_reverse(napis1)
-
-stri_reverse("World")
-
-stringi::stri_reverse("World")
-
-
-# łączenie napisów
-print(paste(napis1,napis2))
-
-# łączenie napisów z wykorzystaniem stringi
-print(stringi::stri_join(napis1,napis2))
-
-# łączenie napisów z separatorem
-print(paste(napis1,napis2,sep=","))
-
-# łączenie napisów z separatorem i wykorzystaniem stringi
-print(stri_join(napis1,napis2,sep=","))
-print(stri_join(napis1,napis2,sep="+"))
-
-
-
-# substr
-
-print(substr(napis1,1,3)) # wyświetlenie 3 pierwszych znaków
-
-# wyświetlenie 3 pierwszych znaków z wykorzystaniem stringi
-print(stri_sub(napis1,1,3))
-
-# wyswietlenie 3 ostatnich znaków
-print(substr(napis1,nchar(napis1)-2,nchar(napis1)))
-
-# wyswietlenie 3 ostatnich znaków z wykorzystaniem stringi
-print(stri_sub(napis1,nchar(napis1)-2,nchar(napis1)))
-
-#wyswietlenie od 1 do 4 znaku
-print(substr(napis1,1,4))
-
-#wyswietlenie od 1 do 4 znaku z wykorzystaniem stringi
-print(stri_sub(napis1,1,4))
-
-print(toupper(napis1))
-
-
-
-#zwieksczenie napisu z wykorzystaniem stringi
-print(stringi::stri_trans_toupper(napis1))
-#zmniejszenie napisu
-
-print(tolower(napis1))
-
-#zmniejszenie napisu z wykorzystaniem stringi
-
-print(stringi::stri_trans_tolower(napis1))
-
-
-print(sub("H","Y",napis1))
-
-print(stringi::stri_replace_first_regex(napis1,"H","Y"))
-
-
-
-#zamiana litery o pozycji 3 na Y (liczymy od 1), nie znalazlem funkcji w stringi
-
-substr(napis1,1,1)<-"J"
-print(napis1)
-
-#sprawdz czy litera H jest w napisie
-napis1<-"Hello"
-print(grepl("H",napis1))
-
-#sprawdz czy litera H jest w napisie z wykorzystaniem stringi
-print(stringi::stri_detect_regex(napis1,"J"))
-
-library(stringr) # wczytanie pakietu stringr
-print(str_count(napis1, "[A-Z]"))
-
-#policz duze litery w napisie z wykorzystaniem stringi
-# print(stringi::stri_count_regex(napis1,"[A-Z]")
-
-napis1<-"Jan"
-napis2<-"Kowalski"
-n1 <- toupper(napis1)
-n2 <- toupper(napis2)
-print(paste(n1,n2))
-
-
-#operacje logiczne
-A<-TRUE
-B<-FALSE
-
-#AND
-print(A&B)
-
-#OR
-print(A|B)
-
-#NOT
-print(!B)
-
-# praca z datami i czasem
-sdate1 <- "6aug2005"
-sdate2 <- "jan151999"
-sdate3 <- "12-15-2001"
-
-# konwersja napisu na date
-date1 <- as.Date(sdate1, "%d%b%Y")
-date1
-
-# konwersja napisu na date
-date2 <- as.Date(sdate2, "%b%d%Y")
-date2
-
-# konwersja napisu na date
-date3 <- as.Date(sdate3, "%m-%d-%Y")
-date3
-
-dates1 <- c("06sep2001","21jun2004","04jul2006","6aug2005")
-
-as.Date(dates1, "%d%b%Y")
-
-
-date1 <- as.Date("06sep2001", "%d%b%Y")
-date2 <- as.Date("21jun2004", "%d%b%Y")
-
-
-# roznica miedzy datami
-date2 - date1
-
-# roznica miedzy datami
-as.numeric(date2 - date1)
-
-# roznica miedzy datami w godzinach
-as.numeric(date2 - date1, units = "hours")
-
-# roznica miedzy datami w minutach
-as.numeric(date2 - date1, units = "mins")
-
-# roznica miedzy datami w sekundach
-as.numeric(date2 - date1, units = "secs")
-
-# roznica miedzy datami w latach
-# as.numeric(date2 - date1, units = "year") # nie dziala
-# help()
-lubridate::time_length(difftime(date2, date1), "years")
-
-
-
-#stworz wektor z 10 elementami
-
-wektor1<-c(1,2,3,4,5,6,7,8,9,10)
-wektor1
-
-wektor2<-seq(1,100,0.5)
-wektor2
-
-wektor3<-seq(1, 3, 0.2)
-wektor3
-
-wektor4<-seq(1, 100, length.out=5)
-wektor4
-
-
-wektor5<-seq(5, 1, by=-1)
-wektor5
-
-
-wektor6<-seq(5, -1)
-wektor6
-
-
-wektor6[1] # pierwszy element
-wektor6[2] # drugi element
-
-
-
-#ostaatni element
-wektor6[length(wektor6)-2]
-
-wektor6[1:3]
-
-wektor6[c(1,3,5)]
-
-wektor6[c(-1,-3,-5)]
-
-
-wektor6<-wektor6[length(wektor6):1]
-wektor6
-
-#filtruj wektor
-
-wektor7<-c(1,2,3,4,5,6,7,8,9,10)
-wektor7
-
-wektor7[wektor7>5] # elementy wieksze od 5
-
-wektor7[wektor7%%2==0] # elementy podzielne przez 2
-
-wektor7[wektor7%%2==1] # elementy niepodzielne przez 2
-
-wektor7[wektor7%%2==0 & wektor7>5] # elementy podzielne przez 2 i wieksze od 5
-
-wektor7[wektor7%%2==0 | wektor7>5] # elementy podzielne przez 2 lub wieksze od 5
-
-
-wektor8<-c(TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE)
-wektor8
-
-wektor7[wektor8]
-
-wektor10<-c(9,1,-1,2,2,3,0,9,-11)
-
-sort(wektor10)
-
-sort(wektor10, decreasing=TRUE)
-
-
-#tworzenie wektora z losowymi wartosciami
-
-wektor12<-sample(99:109, 10, replace=FALSE)
-wektor12
-
-
-#tworzenie wektora z losowymi wartosciami z wykorzystaniem funkcji runif
-
-wektor13<-runif(10, min=1, max=10) # 10 losowych liczb z przedzialu 1-10
-wektor13
-
-#tworzenie wektora z losowymi wartosciami z wykorzystaniem funkcji rnorm
-
-wektor14<-rnorm(10, mean=0, sd=1) # 10 losowych liczb z rozkladu normalnego o sredniej 0 i odchyleniu standardowym 1
-wektor14
-
-# replikacja wektora
-
-wektor15<-c(1,2,3,4,5,6,7,8,9,10)
-wektor15
-
-wektor15[rep(1, 10)] # 10 razy pierwszy element
-
-wektor15[rep(1:3, 10)] # 10 razy elementy 1,2,3
-
-wektor15[rep(1:3, each=10)] # 10 razy element 1, 10 razy element 2, 10 razy element 3
-
-
-#stworz wektor z losowymi literami
-
-wektor16<-sample(letters, 10, replace=TRUE)
-wektor16
-
-
-
-#suma dwoch wektorow
-
-wektor17<-c(1,2,3,4,5,6,7,8,9,10)
-wektor17
-
-wektor18<-c(10,9,8,7,6,5,4,3,2,1)
-wektor18
-
-wektor17+wektor18
-
-#iloczyn dwoch wektorow
-
-wektor17*wektor18
-
-#czesc wspolna dwoch wektorow
-
-wektor19 <- c(1,2,3,4)
-wektor20 <- c(3,4,5,6)
-
-intersect(wektor19, wektor20)
-
-#suma dwoch wektorow
-
-union(wektor19, wektor20)
-
-#roznica dwoch wektorow
-
-setdiff(wektor19, wektor20)
-setdiff(wektor20, wektor19)
-
-
-wektir1 <- sample(1:20, 20, replace = TRUE)
-wektir1
-mean(wektir1[wektir1%%2==0])
-
-
-
-factor1<-factor(c("low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low"))
-
-sort(factor1)
-
-
-factor2<-factor(c("low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low"), levels=c("high", "medium", "low"), ordered=TRUE)
-factor2
-
-#sortuj factor
-
-sort(factor2)
-
-
-factor <- factor(c("wiosna", "lato", "jesien", "zima", "zima"), levels =c("zima", "jesien", "wiosna", "lato"))
-sort(factor)
-
-
-M <- matrix(letters, nrow = 2, ncol=13)
+M <- matrix(1:6, nrow = 2, ncol=3)
 print(M)
 
-M[1,]
-M[2,]
+det(M)
 
-M[,1]
-M[,2]
+#wyznacznik macierzy
 
-M[1,1]
+square_matrix <- matrix(1:4, nrow = 2, ncol=2)
+
+square_matrix
+
+det(square_matrix) # jaki jest warunek, by mozna bylo policzyc wyznacznik?
 
 
+
+
+#macierz z wartosciami losowymi
 M <- matrix(runif(6), nrow = 2, ncol=3)
-
 print(M*6)
 
 print(M/8)
 print(M *1/8)
 
+#macierz z wartosciami losowymi z rozkladu normalnego
+M <- matrix(rnorm(6), nrow = 2, ncol=3)
+print(M)
 
-log(M[,1])
+#macierz losowych liter
+M <- matrix(sample(letters, 6, replace = TRUE), nrow = 2, ncol=3)
+print(M)
+
+
+M[1,]
+M[,2]
+M[,3]
+
+M[1,1]
+M[1,3]
+
 
 
 #macierz z nazwami kolumn i wierszy
@@ -510,17 +48,18 @@ M <- matrix(1:6, nrow = 2, ncol=3, dimnames = list(c("a", "b"), c("c", "d", "e")
 print(M)
 
 
+#wyciaganie elementow z kolumny o nazwie c
+print(M[,"c"])
 
-M["a",]
 
 
-M["b",]
+#wyciaganie elementow z wiersza o nazwie a
+print(M["a",])
 
-M["a","c"]
-
-M
-
+#transponowanie macierzy
 print(t(M))
+
+#stworz macierz z dwoch losowych wektorow
 
 x <- runif(3)
 y <- runif(3)
@@ -528,33 +67,79 @@ y <- runif(3)
 M <- cbind(x, y) # c - columns
 print(M)
 
+#stworz macierz z dwoch losowych wektorow
+M <- rbind(x, y) # r- rows
 
-M <- rbind(x, y)
 M
 
+
+
+# Indeksowanie macierzy
+
+M <- matrix(1:6, nrow = 2, ncol=3)
+print(M)
+
+#pierwszy wiersz
+print(M[1,])
+
+#pierwsza kolumna
+print(M[,1])
+
+#pierwszy element
+print(M[1,1])
+
+#ostatni element
+print(M[2,3])
+
+#ostatni wiersz
+print(M[2,])
+
+#ostatnia kolumna
+print(M[,3])
+
+#pierwszy i ostatni wiersz
+print(M[c(1,2),])
+
+#pierwsza i ostatnia kolumna
+print(M[,c(1,3)])
+
+#pierwszy i ostatni element
 print(M[c(1,2),c(1,3)])
 
-M_letter <- matrix(sample(letters, 9, replace = TRUE), nrow = 3, ncol=3)
-M_letter
+M_letter <- matrix(sample(letters, 6, replace = TRUE), nrow = 2, ncol=3)
+
+#array
 
 A <- array(1:24, dim = c(2,3,4))
 print(A)
 
-A[, , 2]
+#pierwszy element
+print(A[1,1,1])
+
+print(A[,,])
+
+
+#ostatni element
+print(A[2,3,4])
+
+#pierwszy i ostatni element
+print(A[c(1,2),c(1,3),c(1,4)])
+
+A
 
 #listy
 
 L <- list(1, "a", TRUE, 4)
 print(L)
 
-
 #dodaj element do listy
-L <- append(L, "xxx")
+L <- append(L, "b")
 L
 
+#usun element z listy
+L <- L[-3]
 
-L <- L[-7]
-
+L <-L[-4]
 
 
 #polaczenie list
@@ -564,226 +149,201 @@ L2 <- list(2, "b", FALSE, 2+8i)
 L <- c(L1, L2)
 print(L)
 
-cbind(L1, L2)
+rbind(L1, L2)
 
+#odwroc kolejnosc elementow listy
 L <- rev(L)
 print(L)
 
-
+#wybiere elementy z listy
 L[1:3]
+
+L[4:7]
 
 L
 
 
-L[!sapply(L, is.character)]
+#wybierz tylko elementy z listy, ktore sa liczbami
+L[sapply(L, is.numeric)]
+
+#wybierz tylko elementy z listy, ktore nie sa liczbami
+L[!sapply(L, is.numeric)]
+
+#wybierz tylko elementy z listy, ktore sa literami
+L[sapply(L, is.character)]
+
+#wybierz tylko elementy z listy, ktore sa liczbami zespolonymi
+L[sapply(L, is.complex)]
 
 
-
-for (i in 1:10) {
-  print(paste("nazwa_pliku",i,sep="_"))
-}
 
 
 list1 <- list(a = 1: 20, b = 25:30, c = 40:60) # stworz liste o nazwach a, b, c
 list1
 
+# lapply output as list
 
-lapply(list1, length)
+lapply(list1, length) # policz dlugosc kazdego elementu listy
 
-lapply(list1, shapiro.test)
+lapply(list1, sum) # policz sume kazdego elementu listy
 
-library(readODS)
-df<-read_ods("/Users/user/Downloads/daneMCW.ods", sheet = 1)
+lapply(list1, mean) # policz srednia kazdego elementu listy
+
+lapply(list1, sd) # policz odchylenie standardowe kazdego elementu listy
+
+lapply(list1, var) # policz wariancje kazdego elementu listy
+
+lapply(list1, min) # policz minimum kazdego elementu listy
+
+lapply(list1, max) # policz maksimum kazdego elementu listy
+
+lapply(list1, range) # policz zakres kazdego elementu listy
 
 
+#sapply output as  matrix
+
+sapply(list1, length) # policz dlugosc kazdego elementu listy
+sapply(list1, sum) # policz sume kazdego elementu listy
+sapply(list1, mean) # policz srednia kazdego elementu listy
+sapply(list1, sd) # policz odchylenie standardowe kazdego elementu listy
+sapply(list1, var) # policz wariancje kazdego elementu listy
+sapply(list1, min) # policz minimum kazdego elementu listy
+sapply(list1, max) # policz maksimum kazdego elementu listy
+sapply(list1, range) # policz zakres kazdego elementu listy
 
 
-Numerical_variables <- which(sapply(df, is.numeric))
-
-dane_num <-df[Numerical_variables]
-
-lapply(dane_num,shapiro.test )
-
-
-
-df$Miejscowosc
-
+M <- matrix(1:6, nrow = 2, ncol=3)
+print(M)
 
 kwadrat <- function(x){
   return (x**2)
 }
 
-kwadrat(6)
+#zastosuj funkcje do kazdego elementu macierzy
+lapply(M, kwadrat)
+sapply(M, kwadrat)
 
-podatek<-function(roczne_zarobki, czy_ryczal){
-  if (czy_ryczal==TRUE){
-    pod = 0.2*roczne_zarobki;
-    return(pod)
-  }
-  else{
-    pod = 0.4*roczne_zarobki
-    return(pod)
-  }
-}
+apply(M, 2, kwadrat) # zastosuj funkcje do kazdego wiersza
+apply(M, 1, kwadrat) # zastosuj funkcje do kazdej kolumny
+apply(M, c(1,2), kwadrat)
 
-podatek(10, TRUE)
+#zadanie bojowe
 
+#stworz macierz 3x3 9:17
 
-
-kasa<-100
-
-wycieczka<-function(kasa){
-  if(kasa>80){
-    print("pijemy wodke")
-  }
-  else if (kasa<=80 & kasa>20){
-    print("pijemy piwo")
-  }
-  
-  else if (kasa<=20 & kasa>5){
-    print("jemy chipsy")
-  }
-  
-  else{
-    print("Zostajemy w domu")
-  }
-  
-}
-
-wycieczka(0)
+M1 <- matrix(9:17, nrow = 3, ncol=3)
+M1
 
 
-median(df$`%tluszcz`)
+#napisz kod/funkcje, ktora policzy sume elementow w kazdym wierszu
 
+apply(M,1, sum)
 
-kodowanie_tluszczu<-function(x){
-  if(x>2){
-    return("high")
-  }
-  else if (x<=2 & x>1){
-    return("medium")
-  }
-  else{
-    return("low")
-  }
-  
-}
+sum(M[1,])+sum(M[2,])+sum(M[3,])
 
-kodowanie_tluszczu(1)
+#napisz kod/funkcje, ktora policzy sume elementow w kazdej kolumnie
 
-
-df$kodowany_tluszcz<-sapply(df$`%tluszcz`, kodowanie_tluszczu)
+apply(M, 2, sum)
 
 
 
-#a,b,c 
-#delta=b^2-4*a*c
-#if delta>0, 2 roz, delta==0, 1 rozwiazanie, delta<0, brak rozwiazan
+#napisz kod/funkcje, ktora policzy sume elementow na przekatnej
 
-delta<-function(a,b,c){
-  d <-b^2-4*a*c;
-  if(d>0){
-    return("2 rozw")
-  }
-  else if (d==0){
-    return("1 rozw")
-  }
-  else{
-    return("o rozw")
-  }
-  
-}
+sum(M[1,1])+sum(M[2,2])+sum(M[3,3])
 
-delta(1,1,1)
-
-
-# f(x)=x^2
-
-
-kwadrat(3)
-
-lapply(list1,kwadrat)
-
-df$log_SR <-log(df$SR) #tworzymy kolumne o nazwie log_SR w dataframe, i do niej przypisujemy rezulat logarytmu(mozemy cokolwiek innego przypisac)
+#napisz kod/funkcje, ktora policzy sume elementow na przekatnej drugiej
 
 
 
-library(stringi)
 
-last_4chars<-function(word){
-  four_chars <- substr(word,nchar(word)-3,nchar(word))
-  return(four_chars)
-  
-}
+#stworz nastepna macierz 3x3
 
-napis1<-'Hello2004'
-last_4chars(napis1)
+M2 <- matrix(1:9, nrow = 3, ncol=3)
+M2
 
+cbind(M1,M2)
+cbind(M2,M1)
 
+M1
+M2
 
-df$year<-last_4chars(df$code)
+rbind(M1,M2)
+rbind(M2,M1)
 
+#polacz macierze w jedna za pomoca funkcji cbind
+#polacz macierze w jedna za pomoca funkcji rbind
 
-update_sr <- function(x){
-  if(x>20){
-    x = x+100
-    return(x)
-  }
-  else{
-    x = x-50
-    return(x)
-  }
-}
+#odwroc znaki elementow macierzy uzywajac jednej funkcji z apply, lapply, sapply
 
-df$dziwny_sr<-lapply(df$SR, update_sr)
+M1
 
-
-koduj_loc<-function(x){
-  if (x=='z'){
-    return('szklarnia')
-  }
-  else if (x=='w'){
-    return('kontrola')
-  }
+minus <- function(x){
+  return (-x)
 }
 
 
+apply(M1, c(1,2), minus)
 
-df$kodowany_loc<-lapply(df$Localisation, koduj_loc)
 
+apply(M1, 2, minus)
+M1
 
-#############DATA FRAME I WYKRESY ########################
+lapply(M1, minus)
 
+#data frame
+
+#stworz data frame
 df <- data.frame(a = 1:5, b = letters[1:5], c = TRUE, d = 1+4i)
 df
 
+#dodaj kolumne do data frame
+df$e <- c(1,2,3,4,5)
+df
 
-df$'dowolna_nazwa' <-c(9,10,11,12,99)
-df$`dowolna nazwa`<-NULL
+df$f<-c(9,10,11,12,13)
+df
 
-df <- rbind(df, c(8, "f", FALSE, 6+8i,88))
+#usun kolumne z data frame
+df$e <- NULL
+df
 
-df[1,]<- NA
+#dodaj wiersz do data frame
+df <- rbind(df, c(6, "f", FALSE, 6+8i, 9))
+df
 
+#usun wiersz z data frame
+df[6,]<- NA
 df <- na.omit(df)
+df
 
+df[3,]<-NA
+df <- na.omit(df)
+df
+
+#zapisz data frame do pliku csv
 write.csv(df, file = "df.csv")
 
-write.csv(df, file="/Users/user/Downloads/df.csv")
+
+write.csv(df, file="/Users/user/Downloads/dupa.csv")
+
 
 
 #odczytaj data frame z pliku csv
-df2 <- read.csv("/Users/user/Downloads/df.csv")
-df2
+df <- read.csv("df.csv")
+df
+
+names(df)
 
 
+#zmien nazwe kolumny
+names(df)[1] <- "kolumna1"
+df
 
-colnames(df2)
+rownames(df)
 
-names(df2)[6]<-"tutaj miala byc nazwa"
-
-
-rownames(df2)[1]<-"wiersz1"
+#zmien nazwe wiersza
+rownames(df)[1] <- "wiersz1"
+df
 
 #polacz data frame
 df1 <- data.frame(a = 1:5, b = letters[1:5], c = TRUE, d = 1+4i)
@@ -834,58 +394,77 @@ df2<- data.frame(a = 1:5, b = letters[1:5], c = FALSE, d = 6+8i)
 
 df <- merge(df1, df2, by = "a", all.y = TRUE)
 
-
-library(readODS)
-df1<-read_ods("/Users/user/Downloads/daneMCW.ods", sheet = 1)
-df1
-
-df2<-readxl::read_excel("/Users/user/Downloads/fitomcw.xlsx")
-df2
-
-df <- merge(df1, df2, by = "code", all.x = TRUE) # inner join 
-df
-
-################ FILTROWANIE I WYKRESY################
+#titanic
 
 #pobierz dane z internetu
 titanic <- read.csv("https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv")
 head(titanic)
 
+class(titanic)
+
 #policz ilosc pasazerow
 nrow(titanic)
 ncol(titanic)
 
-
 #policz ilosc pasazerow w klasie pierwszej
 sum(titanic$Pclass == 1)
-
 
 #policz ilosc pasazerow w klasie pierwszej i drugiej
 sum(titanic$Pclass == 1 | titanic$Pclass == 2)
 
+#policz ilosc pasazerow w klasie pierwszej i drugiej i trzeciej
+sum(titanic$Pclass == 1 | titanic$Pclass == 2 | titanic$Pclass == 3)
+
+#policz ilosc pasazerow w klasie pierwszej i drugiej i trzeciej
+
 sum(titanic$Pclass %in% c(1,2))
 
+#policz ilosc pasazerow w klasie pierwszej i drugiej i trzeciej
 
-table(titanic$Sex, titanic$Survived)/nrow(titanic)*100
+sum(titanic$Pclass %in% 1:2)
+
+#policz ilosc pasazerow w klasie pierwszej i drugiej i trzeciej
+
+sum(titanic$Pclass <= 3)
+
+#policz ile kobiet i mezczyzn przezylo katastrofe
+
+table(titanic$Sex, titanic$Survived)
+
+head(titanic)
+#polacz kolumny SiblingsSpouse i ParentsChildren w jedna kolumne FamilySize
 
 titanic$FamilySize <- titanic$SibSp + titanic$Parch
+head(titanic)
 
+#podziel pasazerow na kategorie wiekowe
 
 titanic$AgeGroup <- cut(titanic$Age, breaks = c(0, 18, 35, 60, 100), labels = c("child", "young", "adult", "old"))
 # head(titanic)
 table(titanic$AgeGroup)
 
+#stworz kolumne, ktora bedzie miala wartosc PREMIUM, jezeli pasazer zaplacil wiecej niz 100 dol, a STANDARD, jezeli zaplacil mniej
 
 titanic$TicketType <- ifelse(titanic$Fare > 100, "PREMIUM", "STANDARD")
 
-
 table(titanic$TicketType)
 
+head(titanic,10)
+
+tail(titanic,9)
+
+#uzywajac funckji table, podac ile przezylo mlodych dziewczynek, a ile nie przezylo starszych mezczzyn
 
 table(titanic$Sex=='female' & titanic$Survived==1 & titanic$AgeGroup == 'child')
 
 table(titanic$Sex=='male' & titanic$Survived==0 & titanic$AgeGroup == 'old')
 
+table(titanic$Survived, titanic$Sex, titanic$AgeGroup)
+
+
+#podziel kolumne Name po przecinku
+
+head(titanic)
 
 
 titanic$Name <- as.character(titanic$Name)
@@ -893,6 +472,11 @@ titanic$Name <- strsplit(titanic$Name, ",")
 titanic$Name <- sapply(titanic$Name, function(x) x[2])
 titanic$title <- sapply(titanic$Name, function(x) strsplit(x, " ")[[1]][2])
 
+
+
+
+
+#usun kropki z tytulow
 
 titanic$title <- gsub("\\.", "", titanic$title)
 titanic$title <- gsub(" ", "", titanic$title)
@@ -906,51 +490,281 @@ titanic$title <- gsub("Major", "Officer", titanic$title)
 
 table(titanic$title)
 
+#najpopularniejszy tytul
+
 table(titanic$title)[which.max(table(titanic$title))]
+
+#top 3 najpopularniejsze tytuly
 
 table(titanic$title)[order(table(titanic$title), decreasing = TRUE)[1:3]]
 
+#filtruj po tytule
 
 titanic[titanic$title == "Miss",]
 
-# na.omit(titanic[titanic$title == "Miss" & titanic$Age <= 25 & titanic$Age >= 18,])
+#filtruj po tytule i wieku
 
-head(titanic[order(titanic$Age),], 5)
+head(titanic[titanic$title == "Miss" & titanic$Age < 18,])
 
+head(titanic)
 
-head(titanic[order(titanic$Age, decreasing = TRUE),], 20)
+#sortuj po wieku
+
+head(titanic[order(titanic$Age),])
+
+#sortuj po wieku malejaco
+
+head(titanic[order(titanic$Age, decreasing = TRUE),])
+
+#sortuj po wieku i klasie
 
 head(titanic[order(titanic$Age, titanic$Pclass),])
 
+#pokaz srednia wieku dla kazdej klasy
+
 aggregate(Age ~ Pclass, data = titanic, FUN = mean)
 
+#pokaz srednia oplaty za bilet dla kazdej plci
 
 aggregate(Fare~Sex, data=titanic, FUN=mean)
 
+#pokaz maksymalna oplate za bilet dla kazdej plci
 
 aggregate(Fare~Sex, data=titanic, FUN=max)
 
-aggregate(Fare~Sex+Pclass, data=titanic, FUN=mean)
+#pokaz min oplaty za bilet dla kazdej plci i klasy
 
-titanic$AgeGroup <- cut(titanic$Age, breaks = c(0, 18, 35, 60, 100), labels = c("child", "young", "adult", "old"))
+aggregate(Fare~Sex+Pclass, data=titanic, FUN=min)
+aggregate(Fare~Sex+Pclass+AgeGroup, data=titanic, FUN=max)
+
+#zadanie bojowe
+
+head(titanic)
+
+#policz liczbw kobiet i mezczyzn w kazdej klasie
+
+# table(titanic$Sex, titanic$Pclass)
+
+aggregate(PassengerId~Sex+Pclass, data=titanic, FUN=length)
 
 
-aggregate(Fare~Sex+Pclass+AgeGroup, data=titanic, FUN)
+#policz ilosc kobiet i mezczyzn w kazdej klasie, ktore przezyly katastrofe
+
+aggregate(PassengerId~Sex+Pclass, data=titanic, FUN=length)
+
+# aggregate(PassengerId~Sex+Pclass+Survived, data=titanic, FUN=length)
+table(titanic$Sex, titanic$Pclass, titanic$Survived)
+aaa<-aggregate(PassengerId~Sex+Pclass+Survived, data=titanic, FUN=length)[aaa$Survived == 1,]
+
+#stworz kolumne, ktora bedzie miala wartosc child, jezeli pasazer ma mniej niz 18 lat, a adult, jezeli ma wiecej
+
+titanic$child_group<-ifelse(titanic$Age < 18, "child", "adult")
+
+table(titanic$child_group)
 
 
-#sprawdz czy wiecej kobiet czy mezczyzn przezylo katastrofe w kazdej klasie(Plass)
+#policz ile srednio placil doroslly pasazer za bilet w kazdej klasie a ile za bilet dziecko
 
+aggregate(Fare~Pclass+child_group, data=titanic, FUN=mean)
+
+
+#policz ile srednio placil doroslly pasazer za bilet w kazdej klasie a ile za bilet dziecko, ktore przezylo katastrofe
+
+aggregate(Fare~Pclass+child_group+Survived, data=titanic, FUN=mean)
+
+#policz ile srednio placil doroslly pasazer za bilet w kazdej klasie a ile za bilet dziecko, 
+# ktore przezylo katastrofe, ktore mialy mniej niz 3 rodzenstwa
+
+aggregate(Fare~Pclass+child_group+Survived, data=titanic, FUN=mean)
+
+aggregate(Fare~Pclass+child_group+Survived+SibSp, data=titanic[titanic$SibSp<3,], FUN=mean)
+
+
+#sprawdz czy wiecej kobiet czy mezczyzn przezylo katastrofe
+#sprawdz czy wiecej kobiet czy mezczyzn przezylo katastrofe w kazdej klasie
+
+#sprawdz ile zaplacilo za bilet najstarszy pasazer
+
+#sprawdz ile zaplacilo za bilet najmlodszy pasazer
+
+#sprawdz ile zaplacila najmlodsza dziewczynka a ile majmlodszy chlopiec
+
+boy<-titanic[titanic$Sex=='male',]
+boy[which.min(boy$Age),]
+boy[which.min(boy$Age),]["Fare"]
+
+min_fare_by_sex<-function (x){
+  temp<-titanic[titanic$Sex==x,]
+  temp[which.min(temp$Age),]
+  temp[which.min(temp$Age),]["Fare"]
+  
+  
+}
+
+min_fare_by_sex("female")
+
+
+
+#tidyverse dplyr data manipulation
 
 library(tidyverse)
 library(dplyr)
 
-# install.packages("tidyverse")
-
-# head(titanic)
-
-titanic %>% head(10) %>% select(Sex, Ticket)  -> dane
+#select columns by pipe
 
 
-write.csv(dane, file="/Users/user/Downloads/dane.csv")
+# ls | cat | less > plik.txt 
+
+head(titanic)
+
+titanic %>% head(10) %>% select(Sex)
+
+titanic %>% select(Sex, Age, Pclass) %>% head()
+
+
+titanic %>% select(Sex, Age, Pclass) %>% head()
+
+#select columns by pipe and filter
+
+
+head(titanic[titanic$Age<19,])
+
+
+titanic %>% filter(Age<19) %>% head()
+
+#select columns by pipe and filter and order
+
+titanic %>% filter(Age<19) %>% arrange(desc(Age)) %>% head()
+
+
+#select columns by pipe and filter and order and mutate
+
+titanic %>% filter(Age<39) %>% arrange(Age) %>% mutate(AgeGroup = ifelse(Age < 18, "child", "adult")) %>% head()
+
+
+#select columns by pipe and filter and order and mutate and group_by
+
+titanic %>%
+  filter(Age<19) %>% arrange(Age) %>% mutate(AgeGroup = ifelse(Age < 18, "child", "adult")) %>% group_by(AgeGroup) %>% head()
+
+#select columns by pipe and filter and order and mutate and group_by and summarise
+
+titanic %>%
+  filter(Age<19) %>% arrange(Age) %>% mutate(AgeGroup = ifelse(Age < 18, "child", "adult")) %>% group_by(AgeGroup) %>% summarise(meanAge = mean(Age))
+
+
+#select columns by pipe and filter and order and mutate and group_by and summarise and arrange
+
+titanic %>%
+  filter(Age<19) %>% arrange(Age) %>% mutate(AgeGroup = ifelse(Age < 18, "child", "adult")) %>% group_by(AgeGroup) %>% summarise(meanAge = mean(Age)) %>% arrange(desc(meanAge))
+
+
+
+#za pomoca mutate stworzyc kolumne duza_rodzina, gdzie duza_rodzina Family_Size>3, "Duza", "Mala"
+
+titanic %>% mutate(AgeGroup = ifelse(Age < 18, "child", "adult"))
+
+temp<-titanic %>% 
+  mutate(Family_Size=SibSp+Parch)%>%
+  mutate(duza_rodzina = ifelse(Family_Size >3, "duza", "mala"))
+
+
+
+# group_by(AgeGroup) %>% summarise(meanAge = mean(Age))
+# dzieci < 18, 
+
+#policzyc sredni wiek niepelnoletnich wg plci
+
+titanic %>%
+  filter(Age<18) %>% group_by(Sex) %>% summarise(meanAge = mean(Age))
+
+
+
+
+library(ggplot2)
+
+#plot histogram
+
+ggplot(titanic, aes(x = Age)) + geom_histogram()
+
+#plot histogram with bins
+
+ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 60)
+
+#plot histogram with bins and fill
+
+ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 60, fill = "blue")
+
+#plot histogram with bins and fill and color
+
+ggplot(titanic, aes(x = Age)) + geom_histogram(bins = 60, fill = "#00ffff", color = "blue",show.legend=TRUE)
+
+#scatter plot
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point()
+
+#scatter plot with color
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "#00ffff")
+
+#scatter plot with color and shape
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 4)
+
+#scatter plot with linear regression
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 4) + geom_smooth(method = "lm")
+
+#scatter plot with linear regression and legend
+
+ggplot(titanic, aes(x = Age, y = Fare))
++ geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom")
+
+#scatter plot with linear regression and legend and title
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue")+ theme(legend.position = "bottom") + ggtitle("Age vs Fare")
+
+#facet plot
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare") + facet_wrap(~TicketType)
+
+#facet plot with legend
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare") + facet_wrap(~Sex) + theme(legend.position = "bottom")
+
+
+#facet plot Age vs Fare with legend and title and facet
+
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare") + facet_wrap(~AgeGroup) + theme(legend.position = "bottom")
+
+#boxplot
+
+ggplot(titanic, aes(y = Fare)) + geom_boxplot()
+
+ggplot(titanic, aes(x = Fare)) + geom_boxplot()
+
+
+#facet boxplot
+
+ggplot(titanic, aes(y = Fare)) + geom_boxplot() + facet_wrap(~Sex)
+
+
+
+
+#pokaz wykres rozrzutu dla wieku(geom_point) i ceny biletu z podzialem na plec i klasa
+# + facet_wrap(~AgeGroup)
+ggplot(titanic, aes(x = Age, y = Fare)) + geom_point(color = "red", shape = 2) + geom_smooth(method = "lm", color = "blue") + theme(legend.position = "bottom") + ggtitle("Age vs Fare") + facet_wrap(~Sex+~Pclass) + theme(legend.position = "bottom")
+
+
+#boxplot z podzialem(facet) na klase Premium i STANDARD, dodajcie tytul i legende
+
+ggplot(titanic, aes(y = Fare)) + geom_boxplot()+facet_wrap(~TicketType)+theme(legend.position = "bottom") + ggtitle("Age vs Fare boxpplot") + theme(legend.position = "bottom")
+
+
+
+titanic %>%filter(Sex=="female")%>%
+  ggplot(aes(y = Fare)) + geom_boxplot()+facet_wrap(~TicketType)+theme(legend.position = "bottom") + ggtitle("Age vs Fare boxpplot female") + theme(legend.position = "bottom")
+
+
+  
+
 
 
